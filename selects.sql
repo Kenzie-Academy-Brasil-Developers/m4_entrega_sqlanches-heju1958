@@ -54,4 +54,14 @@ SELECT
 
 -- 4)
 
+SELECT 
+    SUM(pro.preço)  
+  FROM 
+      clientes cl
+      JOIN pedidos pe ON cl.id = pe.cliente_id
+      JOIN produtos_pedidos pp ON pe.id = pp.pedidos_id 
+      JOIN produtos pro ON pp.produtos_id = pro.id 
+ WHERE 
+      cl.nome = 'Laura';
+
 -- 5)
