@@ -6,15 +6,15 @@ SELECT
       pe.id,
       pe.status,
       pe.cliente_id,
-      pr.id,
-      pr.nome,
-      pr.tipo,
-      pr.preço,
-      pr.pts_de_lealdade
+      pro.id,
+      pro.nome,
+      pro.tipo,
+      pro.preço,
+      pro.pts_de_lealdade
 FROM
       pedidos pe
-      JOIN produtos_pedidos pr_pe ON pe.id = pr_pe.pedidos_id
-      JOIN produtos pr ON pr_pe.produtos_id = pr.id;
+      JOIN produtos_pedidos pp ON pe.id = pp.pedidos_id
+      JOIN produtos pro ON pp.produtos_id = pro.id;
 
 -- 2)
 
@@ -22,10 +22,10 @@ SELECT
       pe.id
 FROM
       pedidos pe
-      JOIN produtos_pedidos pr_pe ON pe.id = pr_pe.pedidos_id
-      JOIN produtos pr ON pr_pe.produtos_id = pr.id
+      JOIN produtos_pedidos pp ON pe.id = pp.pedidos_id
+      JOIN produtos pro ON pp.produtos_id = pro.id
 WHERE 
-      pr.nome = 'Fritas';
+      pro.nome = 'Fritas';
 
 -- 3)
 
@@ -59,11 +59,11 @@ WHERE
 -- 5)
 
 SELECT
-      pr.nome,
+      pro.nome,
       COUNT(pp.pedidos_id)     
 FROM
       pedidos pe
       JOIN produtos_pedidos pp ON pe.id = pp.pedidos_id
-      JOIN produtos pr ON pp.produtos_id = pr.id 
+      JOIN produtos pro ON pp.produtos_id = pro.id 
 GROUP BY 
-      pr.nome;
+      pro.nome;
