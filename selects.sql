@@ -37,6 +37,21 @@ SELECT
 
 -- 3)
 
+  ALTER TABLE
+      pedidos
+  ADD
+    COLUMN gostam_de_fritas VARCHAR(50);
+  
+  SELECT 
+      cl.nome AS gostam_de_fritas
+  FROM 
+      clientes cl
+      JOIN pedidos pe ON cl.id = pe.cliente_id
+      JOIN produtos_pedidos pp ON pe.id = pp.pedidos_id 
+      JOIN produtos pro ON pp.produtos_id = pro.id 
+  WHERE 
+      pro.nome = 'Fritas';
+
 -- 4)
 
 -- 5)
