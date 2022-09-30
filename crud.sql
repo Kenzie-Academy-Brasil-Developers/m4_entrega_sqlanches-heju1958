@@ -23,6 +23,7 @@ INSERT INTO produtos_pedidos
 VALUES
        (6, 1),
  	   (6, 2),
+       (6, 6),
        (6, 8),
        (6, 8);
 
@@ -30,7 +31,25 @@ VALUES
 
 -- 1)
 
-
+SELECT 
+      cl.id,
+      cl.nome,
+      cl.lealdade,
+      pe.id,
+      pe.status,
+      pe.cliente_id,
+      pro.id,
+      pro.nome,
+      pro.tipo,
+      pro.preço,
+      pro.pts_de_lealdade 
+FROM 
+      clientes cl
+      JOIN pedidos pe ON cl.id = pe.cliente_id
+      JOIN produtos_pedidos pp ON pe.id = pp.pedidos_id 
+      JOIN produtos pro ON pp.produtos_id = pro.id 
+WHERE  
+      cl.nome = 'Georgia';
 
 -- Atualização
 
