@@ -55,7 +55,22 @@ WHERE
 
 -- 1)
 
-
+SELECT 
+      SUM(pro.pts_de_lealdade) 
+FROM 
+      clientes cl
+      JOIN pedidos pe ON cl.id = pe.cliente_id
+      JOIN produtos_pedidos pp ON pe.id = pp.pedidos_id 
+      JOIN produtos pro ON pp.produtos_id = pro.id 
+WHERE 
+      cl.nome = 'Georgia';
+     
+UPDATE 
+      clientes
+SET      
+      lealdade = 48
+WHERE 
+      clientes.nome = 'Georgia';
 
 -- Deleção
 
