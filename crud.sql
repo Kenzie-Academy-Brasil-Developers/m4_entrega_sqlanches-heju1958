@@ -76,4 +76,9 @@ WHERE
 
 -- 1)
 
+DELETE FROM
+      clientes
+WHERE
+      id = 4 RETURNING *;
+
 
