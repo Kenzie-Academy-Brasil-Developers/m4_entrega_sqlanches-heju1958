@@ -1,4 +1,3 @@
--- Aqui você deve colocar os códigos SQL referentes às
 -- Seleções de dados
 
 -- 1)
@@ -12,56 +11,48 @@ SELECT
       pr.tipo,
       pr.preço,
       pr.pts_de_lealdade
-    FROM
+FROM
       pedidos pe
-    JOIN produtos_pedidos pr_pe
-        ON
-      pe.id = pr_pe.pedidos_id
-    JOIN produtos pr 
-        ON 
-      pr_pe.produtos_id = pr.id;
+      JOIN produtos_pedidos pr_pe ON pe.id = pr_pe.pedidos_id
+      JOIN produtos pr ON pr_pe.produtos_id = pr.id;
 
 -- 2)
 
 SELECT 
       pe.id
-    FROM
+FROM
       pedidos pe
-    JOIN produtos_pedidos pr_pe
-        ON
-      pe.id = pr_pe.pedidos_id
-    JOIN produtos pr 
-        ON 
-      pr_pe.produtos_id = pr.id
-      WHERE pr.nome = 'Fritas';
+      JOIN produtos_pedidos pr_pe ON pe.id = pr_pe.pedidos_id
+      JOIN produtos pr ON pr_pe.produtos_id = pr.id
+WHERE pr.nome = 'Fritas';
 
 -- 3)
 
-  ALTER TABLE
+ALTER TABLE
       pedidos
-  ADD
-    COLUMN gostam_de_fritas VARCHAR(50);
+ADD
+      COLUMN gostam_de_fritas VARCHAR(50);
   
-  SELECT 
+SELECT 
       cl.nome AS gostam_de_fritas
-  FROM 
+FROM 
       clientes cl
       JOIN pedidos pe ON cl.id = pe.cliente_id
       JOIN produtos_pedidos pp ON pe.id = pp.pedidos_id 
       JOIN produtos pro ON pp.produtos_id = pro.id 
-  WHERE 
+WHERE 
       pro.nome = 'Fritas';
 
 -- 4)
 
 SELECT 
     SUM(pro.preço)  
-  FROM 
+FROM 
       clientes cl
       JOIN pedidos pe ON cl.id = pe.cliente_id
       JOIN produtos_pedidos pp ON pe.id = pp.pedidos_id 
       JOIN produtos pro ON pp.produtos_id = pro.id 
- WHERE 
+WHERE 
       cl.nome = 'Laura';
 
 -- 5)
@@ -73,4 +64,4 @@ SELECT
       pedidos pe
     JOIN produtos_pedidos pp ON pe.id = pp.pedidos_id
     JOIN produtos pr ON pp.produtos_id = pr.id 
-    GROUP BY pr.nome;
+GROUP BY pr.nome;
