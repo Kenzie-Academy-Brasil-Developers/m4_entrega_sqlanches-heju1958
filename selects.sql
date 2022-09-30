@@ -65,3 +65,12 @@ SELECT
       cl.nome = 'Laura';
 
 -- 5)
+
+SELECT
+    pr.nome,
+    COUNT(pp.pedidos_id)     
+    FROM
+      pedidos pe
+    JOIN produtos_pedidos pp ON pe.id = pp.pedidos_id
+    JOIN produtos pr ON pp.produtos_id = pr.id 
+    GROUP BY pr.nome;
