@@ -24,7 +24,8 @@ FROM
       pedidos pe
       JOIN produtos_pedidos pr_pe ON pe.id = pr_pe.pedidos_id
       JOIN produtos pr ON pr_pe.produtos_id = pr.id
-WHERE pr.nome = 'Fritas';
+WHERE 
+      pr.nome = 'Fritas';
 
 -- 3)
 
@@ -46,7 +47,7 @@ WHERE
 -- 4)
 
 SELECT 
-    SUM(pro.preço)  
+      SUM(pro.preço)  
 FROM 
       clientes cl
       JOIN pedidos pe ON cl.id = pe.cliente_id
@@ -58,10 +59,11 @@ WHERE
 -- 5)
 
 SELECT
-    pr.nome,
-    COUNT(pp.pedidos_id)     
-    FROM
+      pr.nome,
+      COUNT(pp.pedidos_id)     
+FROM
       pedidos pe
-    JOIN produtos_pedidos pp ON pe.id = pp.pedidos_id
-    JOIN produtos pr ON pp.produtos_id = pr.id 
-GROUP BY pr.nome;
+      JOIN produtos_pedidos pp ON pe.id = pp.pedidos_id
+      JOIN produtos pr ON pp.produtos_id = pr.id 
+GROUP BY 
+      pr.nome;
